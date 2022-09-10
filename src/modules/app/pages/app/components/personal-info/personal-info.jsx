@@ -20,6 +20,8 @@ export const PersonalInfo = () => {
 
   const hidePatronymic = watch(getName('hidePatronymic'));
 
+  console.log({ hidePatronymic });
+
   return (
     <>
       <div>

@@ -31,7 +31,7 @@ const TextField = ({
       onChange={(e) => onChange(e.target.value)}
       defaultValue={defaultValue}
       variant="filled"
-      required={rules.required}
+      required={!!rules.required}
       error={!!error}
       helperText={error?.message}
       {...props}
@@ -52,8 +52,6 @@ const Checkbox = ({
     <MCheckbox
       checked={value}
       onChange={(e) => onChange(e.target.checked)}
-      defaultValue={defaultValue}
-      variant="filled"
       {...props}
     />
   );

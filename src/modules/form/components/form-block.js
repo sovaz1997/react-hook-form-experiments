@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import { FormPrefixProvider } from '../providers/form-prefix-provider';
 
-export const FormBlock = ({ name, children }) => (
-  <FormPrefixProvider prefix={name}>{children}</FormPrefixProvider>
+export const FormBlock = ({ name, children, title }) => (
+  <FormPrefixProvider prefix={name}>
+    <p>{title}</p>
+    {children}
+  </FormPrefixProvider>
 );
 
 FormBlock.propTypes = {

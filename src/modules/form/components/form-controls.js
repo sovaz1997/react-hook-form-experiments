@@ -27,7 +27,7 @@ const TextField = ({
 
   return (
     <MTextField
-      value={value}
+      value={value || ''}
       onChange={(e) => onChange(e.target.value)}
       defaultValue={defaultValue}
       variant="filled"
@@ -50,7 +50,7 @@ const Checkbox = ({
 
   return (
     <MCheckbox
-      checked={value}
+      checked={!!value}
       onChange={(e) => onChange(e.target.checked)}
       {...props}
     />

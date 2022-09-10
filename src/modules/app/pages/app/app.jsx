@@ -8,11 +8,9 @@ export const App = () => {
   const form = useForm();
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   form.setValue('personalInfo.hidePatronymic', true);
-    // });
-    form.setValue('personalInfo.hidePatronymic', true);
-    form.setValue('personalInfo.firstName', '123');
+    form.setValue('personalInfo', {
+      hidePatronymic: true,
+    });
   }, [form]);
 
   const onSubmit = (res) => {

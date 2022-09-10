@@ -17,10 +17,7 @@ export const PersonalInfo = () => {
 
   const { watch } = useFormContext();
   const { getName } = useFormHelpers();
-
   const hidePatronymic = watch(getName('hidePatronymic'));
-
-  console.log({ hidePatronymic });
 
   return (
     <>

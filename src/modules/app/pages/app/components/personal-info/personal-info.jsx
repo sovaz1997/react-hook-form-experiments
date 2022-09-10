@@ -1,4 +1,5 @@
-import { get, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import { FormControlLabel } from '@mui/material';
 import { FormControls, useFormHelpers } from '../../../../../form';
 import { validation } from './validation';
 import { ErrorLabels } from './error-labels';
@@ -21,24 +22,35 @@ export const PersonalInfo = () => {
 
   return (
     <>
-      <FormControls.TextField
-        name="firstName"
-        label="Имя"
-        rules={getFIORules(ErrorLabels.firstName)}
-      />
-      <FormControls.TextField
-        name="lastName"
-        label="Фамилия"
-        rules={getFIORules(ErrorLabels.lastName)}
-      />
-      <FormControls.Checkbox name="hidePatronymic" />
-      {!hidePatronymic && (
-      <FormControls.TextField
-        name="patronymic"
-        label="Отчество"
-        rules={getFIORules(ErrorLabels.patronymic)}
-      />
-      )}
+      <div>
+        <FormControls.TextField
+          name="firstName"
+          label="Имя"
+          rules={getFIORules(ErrorLabels.firstName)}
+        />
+      </div>
+      <div>
+        <FormControls.TextField
+          name="lastName"
+          label="Фамилия"
+          rules={getFIORules(ErrorLabels.lastName)}
+        />
+      </div>
+      <div>
+        <FormControlLabel
+          label="Отчество отсутствует"
+          control={<FormControls.Checkbox name="hidePatronymic" />}
+        />
+      </div>
+      <div>
+        {!hidePatronymic && (
+        <FormControls.TextField
+          name="patronymic"
+          label="Отчество"
+          rules={getFIORules(ErrorLabels.patronymic)}
+        />
+        )}
+      </div>
     </>
   );
 };

@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { FormProvider, useForm } from 'react-hook-form';
+import { FormControls } from './components/form-controls';
+import FormBlock from './components/form-block';
 
-function App() {
+const App = () => {
+  const form = useForm();
+
+  const showField = form.watch('block.showField');
+
+  const onSubmit = (res) => {
+    console.log(res);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FormProvider {...form}>
+      <FormBlock name="block">
+        <FormControls.Checkbox name="showField" defaultValue />
+        {showField && (
+        <FormControls.TextField
+          label="Test field"
+          rules={{
+            required: {
+              value: true,
+              message: 'Required field!',
+            },
+          }}
+          name="test"
+          defaultValue="123"
+        />
+        )}
+      </FormBlock>
+      <button type="submit" onClick={form.handleSubmit(onSubmit)}>Send</button>
+    </FormProvider>
   );
-}
+};
 
 export default App;

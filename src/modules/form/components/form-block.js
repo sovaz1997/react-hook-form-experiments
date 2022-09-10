@@ -1,8 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import FormPrefixProvider from '../providers/form-prefix-provider';
+import { FormPrefixProvider } from '../providers/form-prefix-provider';
 
-const FormBlock = ({ name, children }) => (
+export const FormBlock = ({ name, children }) => (
   <FormPrefixProvider prefix={name}>{children}</FormPrefixProvider>
 );
 
@@ -14,5 +13,3 @@ FormBlock.propTypes = {
 FormBlock.defaultProps = {
   children: null,
 };
-
-export default FormBlock;

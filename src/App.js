@@ -1,6 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import { FormControls } from './components/form-controls';
-import FormBlock from './components/form-block';
+import { FormControls, FormBlock } from './modules/form';
 
 const App = () => {
   const form = useForm();

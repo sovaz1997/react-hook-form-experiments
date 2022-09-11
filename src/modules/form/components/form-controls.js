@@ -1,19 +1,8 @@
 import React from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import { TextField as MTextField, Checkbox as MCheckbox } from '@mui/material';
-import { useFormHelpers } from '../hooks/use-form-helpers';
-
-const usePrefixedController = ({ name, rules, defaultValue }) => {
-  const { control } = useFormContext();
-  const { getName } = useFormHelpers();
-
-  return useController({
-    name: getName(name),
-    control,
-    rules,
-    defaultValue,
-  });
-};
+import {
+  TextField as MTextField, Checkbox as MCheckbox, Select as MSelect, MenuItem, InputLabel, FormControl,
+} from '@mui/material';
+import { usePrefixedController } from '../hooks/use-prefixed-controller';
 
 const TextField = ({
   name, rules, defaultValue, ...props
@@ -57,7 +46,33 @@ const Checkbox = ({
   );
 };
 
+const Select = ({
+  name, rules, defaultValue, options, ...props
+}) => {
+  const {
+    field: { onChange, value },
+  } = usePrefixedController({
+    name, rules, defaultValue,
+  });
+
+  return (
+    <FormControl>
+      <InputLabel>123</InputLabel>
+      <MSelect
+        value={value || ''}
+        autoWidth
+        onChange={(e) => onChange(e.target.value)}
+        required={!!rules.required}
+        {...props}
+      >
+        {options.map((option) => <MenuItem key={option.value} value={option.value}>{option.text}</MenuItem>)}
+      </MSelect>
+    </FormControl>
+  );
+};
+
 export const FormControls = {
   TextField,
   Checkbox,
+  Select,
 };

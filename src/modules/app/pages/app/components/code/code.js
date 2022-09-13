@@ -1,13 +1,7 @@
-import { styled } from '@mui/material';
-
-const Wrapper = styled('pre')`
-  font-family: monospace, sans-serif;
-  color: #d9d9d9;
-  font-size: 16px;
-`;
+import * as S from './style';
 
 export const Code = ({ value }) => (
-  <Wrapper>
+  <S.Wrapper>
     {JSON.stringify(value, null, 2)}
-  </Wrapper>
+  </S.Wrapper>
 );

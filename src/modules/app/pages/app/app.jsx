@@ -1,5 +1,5 @@
 import {
-  Box, Button, Modal, styled, Typography,
+  Box, Button, Modal, Typography,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -9,30 +9,7 @@ import { FormProvider } from '../../../form/providers/form-provider';
 import { PersonalInfo } from './components/personal-info';
 import { DrinksList } from './components/drinks-list';
 import { Code } from './components/code';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  borderRadius: '25px',
-  backgroundColor: '#004374',
-  border: 'none',
-  boxShadow: 24,
-  p: 4,
-};
-
-const FormBlocks = styled('div')`
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-`;
-
-const Wrapper = styled('div')`
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 0 10px;
-`;
+import * as S from './style';
 
 export const App = () => {
   const form = useForm({
@@ -54,9 +31,9 @@ export const App = () => {
   const drinkValidate = (v) => v.minAge <= differenceInCalendarYears(new Date(), form.getValues().personalInfo.birthdate);
 
   return (
-    <Wrapper>
+    <S.Wrapper>
       <FormProvider {...form}>
-        <FormBlocks>
+        <S.FormBlocks>
           <FormBlock name="personalInfo" title="Персональная информация">
             <PersonalInfo />
           </FormBlock>
@@ -64,19 +41,19 @@ export const App = () => {
             <DrinksList name="drinks" drinkValidate={drinkValidate} />
           </FormBlock>
           <Button variant="contained" onClick={form.handleSubmit(onSubmit)}>Отправить</Button>
-        </FormBlocks>
+        </S.FormBlocks>
       </FormProvider>
       <Modal
         open={showModal}
         onClose={() => setShowModal(false)}
       >
-        <Box sx={style}>
+        <Box sx={S.modalStyle}>
           <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
             Данные отправленной формы
           </Typography>
           <Code value={formResult} />
         </Box>
       </Modal>
-    </Wrapper>
+    </S.Wrapper>
   );
 };

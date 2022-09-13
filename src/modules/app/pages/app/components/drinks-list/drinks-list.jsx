@@ -5,7 +5,7 @@ import { useFormHelpers } from '../../../../../form';
 import { Drink } from '../drink';
 import FieldArray from '../../../../../form/components/field-array';
 
-export const DrinksList = ({ name }) => {
+export const DrinksList = ({ name, drinkValidate }) => {
   const { control } = useFormContext();
   const { data, loading } = useDrinks();
   const { getName } = useFormHelpers();
@@ -29,11 +29,12 @@ export const DrinksList = ({ name }) => {
       <FieldArray
         name={name}
         fields={fields}
-        render={(field, index) => (
+        render={(field, index, path) => (
           <Drink
             onRemove={() => remove(index)}
             name={field.name}
             price={field.price}
+            validate={drinkValidate}
           />
         )}
       />

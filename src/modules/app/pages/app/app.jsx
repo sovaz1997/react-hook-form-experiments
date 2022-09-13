@@ -3,6 +3,7 @@ import {
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { differenceInCalendarYears } from 'date-fns';
 import { FormBlock } from '../../../form';
 import { FormProvider } from '../../../form/providers/form-provider';
 import { PersonalInfo } from './components/personal-info';
@@ -50,6 +51,8 @@ export const App = () => {
     setShowModal(true);
   };
 
+  const drinkValidate = (v) => v.minAge <= differenceInCalendarYears(new Date(), form.getValues().personalInfo.birthdate);
+
   return (
     <Wrapper>
       <FormProvider {...form}>
@@ -58,7 +61,7 @@ export const App = () => {
             <PersonalInfo />
           </FormBlock>
           <FormBlock name="cart" title="Корзина">
-            <DrinksList name="drinks" />
+            <DrinksList name="drinks" drinkValidate={drinkValidate} />
           </FormBlock>
           <Button variant="contained" onClick={form.handleSubmit(onSubmit)}>Отправить</Button>
         </FormBlocks>

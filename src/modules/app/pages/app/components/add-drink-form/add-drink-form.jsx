@@ -32,7 +32,6 @@ export const AddDrinkForm = ({ onSubmit }) => {
           className="select"
           label="Напиток"
           rules={{ required: true }}
-          label="Test"
           sx={{ width: '240px' }}
         />
         <Button type="submit" onClick={form.handleSubmit(onSubmit)}>Добавить</Button>

@@ -53,6 +53,14 @@ export const PersonalInfo = () => {
         />
         )}
       </Grid>
+      <Grid item xs={12}>
+        <FormControls.DatePicker
+          name="birthdate"
+          label="Дата рождения"
+          rules={{ required: true }}
+          sx={{ width: '100%' }}
+        />
+      </Grid>
     </Grid>
   );
 };

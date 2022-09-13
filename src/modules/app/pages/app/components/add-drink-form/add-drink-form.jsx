@@ -30,6 +30,7 @@ export const AddDrinkForm = ({ onSubmit }) => {
           options={data.map((drink) => ({ text: drink.name, value: drink.id }))}
           name="drink"
           className="select"
+          label="Напиток"
           rules={{ required: true }}
           label="Test"
           sx={{ width: '240px' }}

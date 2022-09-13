@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { FormControlLabel } from '@mui/material';
+import { FormControlLabel, Grid } from '@mui/material';
 import { FormControls, useFormHelpers } from '../../../../../form';
 import { validation } from './validation';
 import { ErrorLabels } from './error-labels';
@@ -20,36 +20,39 @@ export const PersonalInfo = () => {
   const hidePatronymic = watch(getName('hidePatronymic'));
 
   return (
-    <>
-      <div>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
         <FormControls.TextField
           name="firstName"
           label="Имя"
           rules={getFIORules(ErrorLabels.firstName)}
+          sx={{ width: '100%' }}
         />
-      </div>
-      <div>
+      </Grid>
+      <Grid item xs={12}>
         <FormControls.TextField
           name="lastName"
           label="Фамилия"
           rules={getFIORules(ErrorLabels.lastName)}
+          sx={{ width: '100%' }}
         />
-      </div>
-      <div>
+      </Grid>
+      <Grid item xs={12}>
         <FormControlLabel
           label="Отчество отсутствует"
           control={<FormControls.Checkbox name="hidePatronymic" />}
         />
-      </div>
-      <div>
+      </Grid>
+      <Grid item xs={12}>
         {!hidePatronymic && (
         <FormControls.TextField
           name="patronymic"
           label="Отчество"
           rules={getFIORules(ErrorLabels.patronymic)}
+          sx={{ width: '100%' }}
         />
         )}
-      </div>
-    </>
+      </Grid>
+    </Grid>
   );
 };

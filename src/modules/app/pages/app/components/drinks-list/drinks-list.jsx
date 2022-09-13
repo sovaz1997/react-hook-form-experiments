@@ -1,8 +1,9 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { AddDrinkForm } from '../add-drink-form';
 import { useDrinks } from '../../../../../../hooks/use-drinks';
-import { FormBlock, useFormHelpers } from '../../../../../form';
+import { useFormHelpers } from '../../../../../form';
 import { Drink } from '../drink';
+import FieldArray from '../../../../../form/components/field-array';
 
 export const DrinksList = ({ name }) => {
   const { control } = useFormContext();
@@ -18,8 +19,6 @@ export const DrinksList = ({ name }) => {
     append(data.find((v) => v.id === drink));
   };
 
-  console.log({ fields });
-
   if (loading) {
     return null;
   }
@@ -27,13 +26,17 @@ export const DrinksList = ({ name }) => {
   return (
     <div>
       <AddDrinkForm onSubmit={onAddDrink} />
-      {
-        fields.map((field, index) => (
-          <FormBlock name={`${name}.${index}`} key={field.id}>
-            <Drink onRemove={() => remove(field.id)} name={field.name} price={field.price} />
-          </FormBlock>
-        ))
-      }
+      <FieldArray
+        name={name}
+        fields={fields}
+        render={(field, index) => (
+          <Drink
+            onRemove={() => remove(index)}
+            name={field.name}
+            price={field.price}
+          />
+        )}
+      />
     </div>
   );
 };

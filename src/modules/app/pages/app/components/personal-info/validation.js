@@ -2,7 +2,7 @@ const isValidSymbols = (v) => /^[а-яёА-ЯЁa-zA-Z-]*$/.test(v);
 const isCyrillic = (v) => /^[а-яё-]*$/.test(v.toLowerCase());
 const isLatin = (v) => /^[a-z-]*$/.test(v.toLowerCase());
 
-const validateUppercaseFirst = (word) => /^[А-ЯЁA-Zа-яёa-z][а-яёa-z]*$/.test(word);
+const validateUppercaseFirst = (word) => /^[А-ЯЁA-Z][а-яёa-z]*$/.test(word);
 
 const isOnlyOneAlphabet = (word) => isCyrillic(word) || isLatin(word);
 

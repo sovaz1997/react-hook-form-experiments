@@ -5,13 +5,21 @@ import {
 import { usePrefixedController } from '../hooks/use-prefixed-controller';
 
 const TextField = ({
-  name, rules, defaultValue, ...props
+  name,
+  rules,
+  defaultValue,
+  ...props
 }) => {
   const {
-    field: { onChange, value },
+    field: {
+      onChange,
+      value,
+    },
     fieldState: { error },
   } = usePrefixedController({
-    name, rules, defaultValue,
+    name,
+    rules,
+    defaultValue,
   });
 
   return (
@@ -29,12 +37,20 @@ const TextField = ({
 };
 
 const Checkbox = ({
-  name, rules, defaultValue, ...props
+  name,
+  rules,
+  defaultValue,
+  ...props
 }) => {
   const {
-    field: { onChange, value },
+    field: {
+      onChange,
+      value,
+    },
   } = usePrefixedController({
-    name, rules, defaultValue,
+    name,
+    rules,
+    defaultValue,
   });
 
   return (
@@ -47,22 +63,33 @@ const Checkbox = ({
 };
 
 const Select = ({
-  name, rules, defaultValue, options, ...props
+  name,
+  rules,
+  defaultValue,
+  options,
+  ...props
 }) => {
   const {
-    field: { onChange, value },
+    field: {
+      onChange,
+      value,
+    },
+    fieldState: { error },
   } = usePrefixedController({
-    name, rules, defaultValue,
+    name,
+    rules,
+    defaultValue,
   });
 
   return (
     <FormControl>
-      <InputLabel>123</InputLabel>
+      <InputLabel>Напиток</InputLabel>
       <MSelect
         value={value || ''}
         autoWidth
         onChange={(e) => onChange(e.target.value)}
         required={!!rules.required}
+        error={!!error}
         {...props}
       >
         {options.map((option) => <MenuItem key={option.value} value={option.value}>{option.text}</MenuItem>)}

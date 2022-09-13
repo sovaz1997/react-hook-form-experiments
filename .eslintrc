@@ -26,6 +26,7 @@
     ],
     "no-underscore-dangle":  ["error", { "allow": ["_place"], "allowAfterThis": true }],
     "react/prop-types": "off",
+    "react/forbid-prop-types": "off",
     "react/require-default-props": "off",
     "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off",
